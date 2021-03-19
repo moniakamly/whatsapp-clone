@@ -47,3 +47,9 @@
   outline-width: 0; /*remove the blue annoying layer by default*/
   margin-left: 10px;
 }
+
+.sidebar__chats {
+  flex: 1;
+  background-color: white;
+  overflow: scroll;
+}
