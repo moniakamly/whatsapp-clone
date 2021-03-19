@@ -17,3 +17,7 @@
 .sidebarChat__info {
   margin-left: 15px;
 }
+
+.sidebar__searchContainer {
+  width: 600px;
+}
