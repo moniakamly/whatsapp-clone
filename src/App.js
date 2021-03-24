@@ -6,7 +6,7 @@ import Sidebar from './Sidebar';
 import axios from './axios';
 
 function App() {
-  const [messages, setMessages] = useState();
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     axios.get('/messages/sync')
