@@ -32,9 +32,10 @@ function Sidebar() {
             </div>
 
             <div className="sidebar__chats">
+                <SidebarChat addNewChat />
                 <SidebarChat name="Test" lastMessage="test test" image="https://lesupermedia.fr/wp-content/uploads/2021/01/avatar-image1.jpeg"/>
                 <SidebarChat name="Youtube" lastMessage="Yooo" image="https://dl.img-news.com/dl/img/s3/dl/2020/05/200517192624-02-how-to-make-facebook-avatar-trnd-super-tease.jpg"/>
-                <SidebarChat name="Dancing" lastMessage="Break a leg" image="https://lesupermedia.fr/wp-content/uploads/2021/01/avatar-image2.jpg"/>
+                <SidebarChat name="Dancing" lastMessage="Break a leg" image="https://avatars.dicebear.com/api/human/12345.svg"/>
 
             </div>
         </div>

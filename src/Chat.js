@@ -22,13 +22,15 @@ function Chat({ messages }) {
         setInput("");
     };
 
+    const NOW = new Date();
+
     return (
         <div className="chat">
             <div className="chat__header">
-                <Avatar />
+                <Avatar src="https://www.webmarketing-com.com/wp-content/uploads/2020/05/facebook-avatars.jpg" />
                 <div className="chat__headerInfo">
-                    <h3>Room name</h3>
-                    <p>Last seen at...</p>
+                    <h3>Testing</h3>
+                    <p>Last seen {NOW.toUTCString()} </p>
                 </div>
 
                 <div className="chat__headerRight">
