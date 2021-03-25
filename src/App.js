@@ -5,6 +5,7 @@ import Chat from './Chat';
 import Sidebar from './Sidebar';
 import axios from './axios';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import Login from './Login';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -32,10 +33,14 @@ function App() {
     }
   }, [messages])
 
-  console.log('messages are ',messages);
+  const [ user, setUser ] = useState(null);
+
   return (
     <div className="app">
-      <div className="app__body">
+      {!user ? (
+        <Login />
+      ) : (
+        <div className="app__body">
         <BrowserRouter>
           <Switch>
             
@@ -50,6 +55,7 @@ function App() {
           </Switch>
         </BrowserRouter>
       </div>
+      )}
     </div>
   );
 }
