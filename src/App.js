@@ -4,6 +4,7 @@ import './App.css';
 import Chat from './Chat';
 import Sidebar from './Sidebar';
 import axios from './axios';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -35,8 +36,19 @@ function App() {
   return (
     <div className="app">
       <div className="app__body">
-        <Sidebar />
-        <Chat messages={messages} />
+        <BrowserRouter>
+          <Switch>
+            
+            <Route path="/rooms/:roomId">  
+              <Chat messages={messages} />
+              <Sidebar />
+            </Route>
+            
+            <Route path="/app">
+              <h1>Yoooo</h1>
+            </Route>
+          </Switch>
+        </BrowserRouter>
       </div>
     </div>
   );
