@@ -6,9 +6,11 @@ import Sidebar from './Sidebar';
 import axios from './axios';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import Login from './Login';
+import { useStateValue } from './StateProvider';
 
 function App() {
   const [messages, setMessages] = useState([]);
+  const [ user ] = useStateValue();
 
   useEffect(() => {
     axios.get('/messages/sync')
@@ -33,8 +35,6 @@ function App() {
     }
   }, [messages])
 
-  const [ user, setUser ] = useState(null);
-
   return (
     <div className="app">
       {!user ? (
@@ -49,8 +49,9 @@ function App() {
               <Sidebar />
             </Route>
             
-            <Route path="/app">
-              <h1>Yoooo</h1>
+            <Route path="/">
+              <Chat messages={messages} />
+              <Sidebar />
             </Route>
           </Switch>
         </BrowserRouter>
