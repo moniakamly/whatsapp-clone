@@ -7,12 +7,16 @@ import './Chat.css';
 import axios from './axios'
 import { useParams } from 'react-router';
 import db from './firebase';
+import firebase from "firebase";
+import { useStateValue } from './StateProvider';
 
 function Chat({ messages }) {
-    const [input, setInput] = useState("");
+    const [ input, setInput] = useState("");
     const [ roomName, setRoomName ] = useState("");
+    const [ messagesList, setMessagesList ] = useState([]);
     const [ seed, setSeed ] = useState("");
     const { roomId } = useParams();
+    const [{ user }] = useStateValue();
 
     useEffect(() => {
         setSeed(Math.floor(Math.random() * 500))
@@ -22,9 +26,15 @@ function Chat({ messages }) {
         if (roomId) {
             db.collection('rooms')
             .doc(roomId)
-            .onSnapshot(snapshot => (
-                setRoomName(snapshot.data().name)
-        ))
+            .onSnapshot((snapshot) => 
+                setRoomName(snapshot.data().name))
+        
+        // db.collection('rooms')
+        //    .doc(roomId).collection('messages')
+        //     .orderBy('timestamp', 'asc')
+        //     .onSnapshot((snapshot) => 
+        //         setMessagesList(snapshot.docs.map((doc) => doc.data()))
+        //     );
         }
     }, [roomId]);
 
@@ -36,6 +46,13 @@ function Chat({ messages }) {
             name: "Demo App", 
             timestamp: "Now",
             received: true,
+        });
+
+        db.collection('rooms').doc(roomId).collection('messages')
+        .add({
+            messages: input, 
+            name: user.displayName,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         });
         
         setInput("");
